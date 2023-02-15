@@ -8,14 +8,10 @@ import { Box } from "@mui/system";
 const HotCollections = () => {
   const settings = {
     dots: true,
-    arrows: true,
     infinite: true,
+    speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
-    cssEase: "linear",
+    slidesToScroll: 3,
   };
 
   const [loading, setLoading] = useState(true);

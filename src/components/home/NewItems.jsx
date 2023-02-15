@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { Skeleton as Skelly } from "@mui/material";
 import Countdown from "react-countdown";
+import "../../Slider.css";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
@@ -52,7 +53,6 @@ const NewItems = () => {
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
     );
     setItems(data);
-    console.log(data);
     setLoading(false);
   }
 
@@ -71,10 +71,10 @@ const NewItems = () => {
             </div>
           </div>
           <Slider {...settings}>
-            {items.map((item, index) => (
+            {items.map((item, id) => (
               <div
                 className="col-lg-12 col-md-6 col-sm-6 col-xs-12  mw-100 mh-100"
-                key={index}
+                key={id}
               >
                 <div className="nft__item">
                   <div className="author_list_pp">
@@ -101,7 +101,7 @@ const NewItems = () => {
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>
-                  {item.expiryDate !== "null" ? (
+                  {item.expiryDate != "null" ? (
                     <div className="de_countdown">
                       <Countdown
                         date={item.expiryDate}

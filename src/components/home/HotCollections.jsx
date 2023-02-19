@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import Skeleton from "../UI/Skeleton";
 import { Skeleton as Skelly } from "@mui/material";
 import { Box } from "@mui/system";
+import { SkeletonTwo } from "../UI/SkeletonTwo";
 
 const HotCollections = () => {
   const settings = {
@@ -28,7 +29,7 @@ const HotCollections = () => {
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
     setCards(data);
-    setLoading(true);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -46,71 +47,46 @@ const HotCollections = () => {
             </div>
           </div>
           <Slider {...settings}>
-            {cards.map((card, id) => (
-              <div
-                className="col-lg-12 col-md-6 col-sm-6 col-xs-12 mw-100"
-                key={id}
-              >
-                <div className="nft_coll">
-                  <div className="nft_wrap">
-                    <Link to="/item-details">
-                      {loading ? (
-                        <Skelly
-                          animation="wave"
-                          sx={{ height: 190 }}
-                          variant="rectangular"
-                        />
-                      ) : (
-                        <img
-                          src={card.nftImage}
-                          className="lazy img-fluid"
-                          alt=""
-                        />
-                      )}
-                    </Link>
-                  </div>
-                  <div className="nft_coll_pp">
-                    <Link to="/author">
-                      {loading ? (
-                        <Skelly
-                          animation="wave"
-                          variant="circular"
-                          width={60}
-                          height={60}
-                        />
-                      ) : (
-                        <img
-                          className="lazy pp-coll"
-                          src={card.authorImage}
-                          alt=""
-                        />
-                      )}
-                    </Link>
-                    <i className="fa fa-check"></i>
-                  </div>
-                  <div className="nft_coll_info">
-                    <Link to="/explore">
-                      {loading ? (
-                        <Box sx={{ pl: 12 }}>
-                          <Skelly
-                            animation="wave"
-                            height={10}
-                            width="60%"
-                            style={{ marginBottom: 6 }}
+            {loading
+              ? new Array(8)
+                  .fill(0)
+                  .map((_, index) => (
+                    <SkeletonTwo key={index} loading={loading} cards={cards} />
+                  ))
+              : cards.map((card, id) => (
+                  <div
+                    className="col-lg-12 col-md-6 col-sm-6 col-xs-12 mw-100"
+                    key={id}
+                  >
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
+                        <Link to="/item-details">
+                          <img
+                            src={card.nftImage}
+                            className="lazy img-fluid"
+                            alt=""
                           />
-                          <Skelly animation="wave" height={10} width="60%" />
-                        </Box>
-                      ) : (
-                        <>
+                        </Link>
+                      </div>
+                      <div className="nft_coll_pp">
+                        <Link to="/author">
+                          <img
+                            className="lazy pp-coll"
+                            src={card.authorImage}
+                            alt=""
+                          />
+                        </Link>
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <Link to="/explore">
                           <h4>{card.title}</h4>
                           <span>{card.code}</span>
-                        </>
-                      )}
-                    </Link>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                ))}
           </Slider>
         </div>
       </div>

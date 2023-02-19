@@ -1,0 +1,19 @@
+.MuiCardHeader-root {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+}
+
+.MuiCardHeader-avatar {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 130px;
+}
+
+.MuiCardHeader-subheader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+}

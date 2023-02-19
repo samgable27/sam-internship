@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import Skeleton from "../UI/Skeleton";
 import { Skeleton as Skelly } from "@mui/material";
 import { Box } from "@mui/system";
 import { SkeletonTwo } from "../UI/SkeletonTwo";
@@ -12,12 +11,9 @@ const HotCollections = () => {
   const settings = {
     dots: true,
     infinite: true,
+    speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
-    cssEase: "linear",
+    slidesToScroll: 3,
   };
 
   const [loading, setLoading] = useState(true);

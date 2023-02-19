@@ -1,19 +1,23 @@
 import React from "react";
-import { Card, CardHeader, Skeleton as Skelly } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Skeleton as Skelly,
+} from "@mui/material";
+import "../../SkeletonTwo.css";
+import { CardMedia } from "@mui/material";
 
 const Skeleton = ({ loading, sellers }) => {
   return (
-    <CardHeader
-      style={{ border: "1px solid white" }}
-      avatar={
-        loading ? (
+    <Card sx={{ m: 0, border: "none" }}>
+      <CardContent sx={{ borderColor: "none" }}>
+        {loading ? (
           <Skelly variant="circular" width={40} height={40} animation="wave" />
         ) : (
           <img src={sellers.authorImage} alt="" />
-        )
-      }
-      title={
-        loading ? (
+        )}
+        {loading ? (
           <>
             <Skelly animation="wave" height={20} width="80%" />
             <Skelly animation="wave" height={20} width="40%" />
@@ -23,9 +27,9 @@ const Skeleton = ({ loading, sellers }) => {
             <span>{sellers.authorName}</span>
             <span>{sellers.price}</span>
           </>
-        )
-      }
-    ></CardHeader>
+        )}
+      </CardContent>
+    </Card>
   );
 };
 

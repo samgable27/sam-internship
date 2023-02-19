@@ -1,3 +1,4 @@
-.MuiCard-root {
-  border: 1px solid whitesmoke;
+.MuiCardContent-root {
+  margin: 3;
+  box-shadow: none;
 }

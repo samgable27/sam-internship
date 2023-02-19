@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import { Skeleton as Skelly } from "@mui/material";
 import { Box } from "@mui/system";
 import { SkeletonTwo } from "../UI/SkeletonTwo";
+import { SkeletonThree } from "../UI/SkeletonThree";
 
 const HotCollections = () => {
   const settings = {
@@ -47,7 +48,11 @@ const HotCollections = () => {
               ? new Array(8)
                   .fill(0)
                   .map((_, index) => (
-                    <SkeletonTwo key={index} loading={loading} cards={cards} />
+                    <SkeletonThree
+                      key={index}
+                      loading={loading}
+                      cards={cards}
+                    />
                   ))
               : cards.map((card, id) => (
                   <div

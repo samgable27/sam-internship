@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardHeader, Skeleton as Skelly } from "@mui/material";
+import "../../SkeletonTwo.css";
 
 const Skeleton = ({ loading, sellers }) => {
   return (

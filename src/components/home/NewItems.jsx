@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Countdown from "react-countdown";
 import "../../Slider.css";
+import { SkeletonTwo } from "../UI/SkeletonTwo";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
@@ -69,7 +70,6 @@ const NewItems = () => {
             </div>
           </div>
           <Slider {...settings}>
-
             {loading
               ? new Array(7)
                   .fill(0)

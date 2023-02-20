@@ -2,3 +2,8 @@
   margin: 3;
   box-shadow: none;
 }
+
+.MuiCard-root {
+  box-shadow: none !important;
+  border: none !important;
+}

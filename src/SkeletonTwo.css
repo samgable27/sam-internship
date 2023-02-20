@@ -17,3 +17,12 @@
   justify-content: center;
   padding: 3px;
 }
+
+.MuiCard-root {
+  box-shadow: none !important;
+}
+
+.MuiCardContent-root {
+  display: flex;
+  flex-direction: column;
+}

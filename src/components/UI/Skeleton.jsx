@@ -17,6 +17,7 @@ const Skeleton = ({ loading, sellers }) => {
         ) : (
           <img src={sellers.authorImage} alt="" />
         )}
+
         {loading ? (
           <>
             <Skelly animation="wave" height={20} width="80%" />

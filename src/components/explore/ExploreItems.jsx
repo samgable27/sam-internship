@@ -1,22 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  useGetExploreQuery,
-  useGetNewItemsQuery,
-} from "../../redux/features/apiSlice";
-import { setExplore } from "../../redux/features/exploreSlice";
-import { setNewItems } from "../../redux/features/itemSlice";
+import { useGetExploreQuery } from "../../redux/features/apiSlice";
 
 import { NftCard } from "../UI/NftCard";
 
-const ExploreItems = () => {
-  const { data: exploreItems, isLoading } = useGetExploreQuery();
-  let { data: item } = useGetNewItemsQuery();
-
-  setNewItems(item);
-  setExplore(exploreItems);
-  console.log(exploreItems);
-
+const ExploreItems = ({ data, loading }) => {
   return (
     <>
       <div>
@@ -28,11 +16,14 @@ const ExploreItems = () => {
         </select>
       </div>
       <div
-        className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-        style={{ display: "block", backgroundSize: "cover" }}
+        className="d-flex flex-3 col-lg-3 col-md-6 col-sm-6 col-xs-12"
+        style={{
+          display: "block",
+          backgroundSize: "cover",
+        }}
       >
-        {exploreItems.map((item, index) => (
-          <NftCard item={item} explore={exploreItems} />
+        {data?.map((item, id) => (
+          <NftCard key={id} item={item} />
         ))}
       </div>
       <div className="col-md-12 text-center">

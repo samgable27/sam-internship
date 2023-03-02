@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { CountdownCard } from "./CountdownCard";
 
-export const NftCard = ({ item, explore }) => {
+export const NftCard = ({ item }) => {
   return (
     <div className="col-lg-12 col-md-6 col-sm-6 col-xs-12  mw-100 mh-100">
       <div className="nft__item">
@@ -16,14 +16,14 @@ export const NftCard = ({ item, explore }) => {
           >
             <img
               className="lazy object-fit-contain"
-              src={item.authorImage || explore.authorImage}
+              src={item.authorImage}
               alt=""
             />
 
             <i className="fa fa-check"></i>
           </Link>
         </div>
-        {/* <CountdownCard item={item} /> */}
+        <CountdownCard item={item} />
         <div className="nft__item_wrap">
           <div className="nft__item_extra">
             <div className="nft__item_buttons">
@@ -44,7 +44,7 @@ export const NftCard = ({ item, explore }) => {
           </div>
           <Link to="/item-details">
             <img
-              src={item.nftImage || explore.nftImage}
+              src={item.nftImage}
               className="lazy nft__item_preview"
               alt=""
             />
@@ -52,14 +52,12 @@ export const NftCard = ({ item, explore }) => {
         </div>
         <div className="nft__item_info">
           <Link to="/item-details">
-            <h4>{item.title || explore.title}</h4>
+            <h4>{item.title}</h4>
           </Link>
-          <div className="nft__item_price">
-            {item.price || explore.title} ETH
-          </div>
+          <div className="nft__item_price">{item.price} ETH</div>
           <div className="nft__item_like">
             <i className="fa fa-heart"></i>
-            <span>{item.likes || explore.title}</span>
+            <span>{item.likes}</span>
           </div>
         </div>
       </div>

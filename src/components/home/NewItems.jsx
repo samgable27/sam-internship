@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Slider from "react-slick";
 import "../../Slider.css";
 import { SkeletonTwo } from "../UI/SkeletonTwo";
 import { NftCard } from "../UI/NftCard";
 import { useGetNewItemsQuery } from "../../redux/features/apiSlice";
-import { setNewItems } from "../../redux/features/itemSlice";
 
 const NewItems = () => {
   const { data, isLoading } = useGetNewItemsQuery();
-  setNewItems(data);
-
-  console.log(data);
 
   const settings = {
     dots: true,

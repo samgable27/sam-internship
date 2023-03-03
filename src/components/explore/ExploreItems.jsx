@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useGetExploreQuery } from "../../redux/features/apiSlice";
+import { useGetFilterQuery } from "../../redux/features/apiSlice";
 
 import { NftCard } from "../UI/NftCard";
 
 const ExploreItems = ({ data, loading }) => {
+  const cardPerRow = 8;
+  const [next, setNext] = useState(cardPerRow);
+
+  const loadMore = () => {
+    setNext(next + cardPerRow / 2);
+  };
+
   return (
     <>
       <div>
@@ -15,19 +23,20 @@ const ExploreItems = ({ data, loading }) => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      <div
-        className="d-flex flex-3 col-lg-3 col-md-6 col-sm-6 col-xs-12"
-        style={{
-          display: "block",
-          backgroundSize: "cover",
-        }}
-      >
-        {data?.map((item, id) => (
+      {data?.slice(0, next)?.map((item, id) => (
+        <div
+          className="d-flex col-lg-3 col-md-6 col-sm-6 col-xs-12"
+          style={{
+            display: "block",
+            backgroundSize: "cover",
+          }}
+        >
           <NftCard key={id} item={item} />
-        ))}
-      </div>
+        </div>
+      ))}
+
       <div className="col-md-12 text-center">
-        <Link to="" id="loadmore" className="btn-main lead">
+        <Link onClick={loadMore} to="" id="loadmore" className="btn-main lead">
           Load more
         </Link>
       </div>

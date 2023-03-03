@@ -23,7 +23,7 @@ export const NftCard = ({ item }) => {
             <i className="fa fa-check"></i>
           </Link>
         </div>
-        <CountdownCard item={item} />
+        {item.expiryDate && <CountdownCard item={item} />}
         <div className="nft__item_wrap">
           <div className="nft__item_extra">
             <div className="nft__item_buttons">

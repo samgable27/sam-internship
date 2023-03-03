@@ -12,7 +12,11 @@ export const nftApi = createApi({
     getExplore: builder.query({
       query: () => "/explore",
     }),
+    getFilter: builder.query({
+      query: (value) => `/explore?filter=${value}`,
+    }),
   }),
 });
 
-export const { useGetNewItemsQuery, useGetExploreQuery } = nftApi;
+export const { useGetNewItemsQuery, useGetExploreQuery, useGetFilterQuery } =
+  nftApi;

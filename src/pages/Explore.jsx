@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 import { useGetExploreQuery } from "../redux/features/apiSlice";
+import { SkeletonTwo } from "../components/UI/SkeletonTwo";
 
 const Explore = () => {
   useEffect(() => {
@@ -35,7 +36,15 @@ const Explore = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <ExploreItems data={data} loading={isLoading} />
+              {isLoading ? (
+                new Array(8)
+                  .fill(0)
+                  .map((_, index) => (
+                    <SkeletonTwo key={index} loading={isLoading} />
+                  ))
+              ) : (
+                <ExploreItems data={data} loading={isLoading} />
+              )}
             </div>
           </div>
         </section>

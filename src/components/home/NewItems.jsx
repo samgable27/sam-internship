@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import React from "react";
 import Slider from "react-slick";
-import Countdown from "react-countdown";
 import "../../Slider.css";
 import { SkeletonTwo } from "../UI/SkeletonTwo";
 import { NftCard } from "../UI/NftCard";
+import { useGetNewItemsQuery } from "../../redux/features/apiSlice";
 
 const NewItems = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { data, isLoading } = useGetNewItemsQuery();
 
   const settings = {
     dots: true,
@@ -46,20 +43,6 @@ const NewItems = () => {
     ],
   };
 
-  async function newItems() {
-    setLoading(true);
-
-    const { data } = await axios.get(
-      "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
-    );
-    setItems(data);
-    setLoading(false);
-  }
-
-  useEffect(() => {
-    newItems();
-  }, []);
-
   return (
     <section id="section-items" className="no-bottom">
       <div className="container">
@@ -71,13 +54,13 @@ const NewItems = () => {
             </div>
           </div>
           <Slider {...settings}>
-            {loading
+            {isLoading
               ? new Array(7)
                   .fill(0)
                   .map((_, index) => (
-                    <SkeletonTwo key={index} loading={loading} items={items} />
+                    <SkeletonTwo key={index} loading={isLoading} />
                   ))
-              : items.map((item, id) => <NftCard key={id} item={item} />)}
+              : data.map((item, id) => <NftCard key={id} item={item} />)}
           </Slider>
         </div>
       </div>

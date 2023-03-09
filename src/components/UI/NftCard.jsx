@@ -12,7 +12,7 @@ export const NftCard = ({ item }) => {
             to="/author"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
-            title="Creator: Monica Lucas"
+            title={item.authorId}
           >
             <img
               className="lazy object-fit-contain"
@@ -23,7 +23,7 @@ export const NftCard = ({ item }) => {
             <i className="fa fa-check"></i>
           </Link>
         </div>
-        {item.expiryDate && <CountdownCard item={item} />}
+        {/* {item.expiryDate && <CountdownCard item={item} />} */}
         <div className="nft__item_wrap">
           <div className="nft__item_extra">
             <div className="nft__item_buttons">

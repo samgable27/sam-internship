@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { CountdownCard } from "./CountdownCard";
 
-export const NftCard = ({ item }) => {
+export const NftCard = ({ item, filteredItem, value }) => {
   return (
     <div className="col-lg-12 col-md-6 col-sm-6 col-xs-12  mw-100 mh-100">
       <div className="nft__item">
@@ -12,18 +12,17 @@ export const NftCard = ({ item }) => {
             to="/author"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
-            title={item.authorId}
+            title={value ? filteredItem.authorId : item.authorId}
           >
             <img
               className="lazy object-fit-contain"
-              src={item.authorImage}
+              src={value ? filteredItem.authorImage : item.authorImage}
               alt=""
             />
 
             <i className="fa fa-check"></i>
           </Link>
         </div>
-        {/* {item.expiryDate && <CountdownCard item={item} />} */}
         <div className="nft__item_wrap">
           <div className="nft__item_extra">
             <div className="nft__item_buttons">
@@ -44,7 +43,7 @@ export const NftCard = ({ item }) => {
           </div>
           <Link to="/item-details">
             <img
-              src={item.nftImage}
+              src={value ? filteredItem.nftImage : item.nftImage}
               className="lazy nft__item_preview"
               alt=""
             />
@@ -52,12 +51,14 @@ export const NftCard = ({ item }) => {
         </div>
         <div className="nft__item_info">
           <Link to="/item-details">
-            <h4>{item.title}</h4>
+            <h4>{value ? filteredItem.title : item.title}</h4>
           </Link>
-          <div className="nft__item_price">{item.price} ETH</div>
+          <div className="nft__item_price">
+            {value ? filteredItem.price : item.price} ETH
+          </div>
           <div className="nft__item_like">
             <i className="fa fa-heart"></i>
-            <span>{item.likes}</span>
+            <span>{value ? filteredItem.likes : item.likes}</span>
           </div>
         </div>
       </div>

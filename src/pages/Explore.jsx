@@ -10,6 +10,7 @@ const Explore = () => {
   }, []);
 
   const { data, isLoading } = useGetExploreQuery();
+  console.log(isLoading);
 
   return (
     <div id="wrapper">
@@ -37,13 +38,13 @@ const Explore = () => {
           <div className="container">
             <div className="row">
               {isLoading ? (
-                new Array(8)
-                  .fill(0)
-                  .map((_, index) => (
+                new Array(8).fill(0).map((_, index) => (
+                  <div className="d-flex col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <SkeletonTwo key={index} loading={isLoading} />
-                  ))
+                  </div>
+                ))
               ) : (
-                <ExploreItems data={data} loading={isLoading} />
+                <ExploreItems data={data} />
               )}
             </div>
           </div>

@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { CountdownCard } from "./CountdownCard";
-
 export const NftCard = ({ item, filteredItem, value }) => {
   return (
     <div className="col-lg-12 col-md-6 col-sm-6 col-xs-12  mw-100 mh-100">
@@ -19,7 +17,6 @@ export const NftCard = ({ item, filteredItem, value }) => {
               src={value ? filteredItem.authorImage : item.authorImage}
               alt=""
             />
-
             <i className="fa fa-check"></i>
           </Link>
         </div>

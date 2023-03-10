@@ -10,7 +10,6 @@ const Explore = () => {
   }, []);
 
   const { data, isLoading } = useGetExploreQuery();
-  console.log(isLoading);
 
   return (
     <div id="wrapper">

@@ -3,14 +3,13 @@ import React from "react";
 import { Skeleton as Skelly } from "@mui/material";
 import "../../Skeleton.css";
 
-export const SkeletonTwo = ({ loading, items }) => {
+export const SkeletonTwo = ({ loading, items, item }) => {
   return (
     <Card>
       <CardContent>
         {loading ? (
           <div className="p-2">
             <Skelly
-              // sx={{ transform: "translateX(-150%)" }}
               variant="circular"
               animation="wave"
               width={50}
@@ -18,12 +17,12 @@ export const SkeletonTwo = ({ loading, items }) => {
             />
           </div>
         ) : (
-          <img src={<img src={items.authorImage} />} />
+          <img src={<img src={items.authorImage || item.authorImage} />} />
         )}
         {loading ? (
           <Skelly variant="rounded" animation="wave" height={350} width={250} />
         ) : (
-          <img src={items.nftImage} />
+          <img src={items.nftImage || item.nftImage} />
         )}
         {loading ? (
           <div className="flex-column align-items-center justify-content-center p-2">
@@ -32,8 +31,8 @@ export const SkeletonTwo = ({ loading, items }) => {
           </div>
         ) : (
           <div>
-            <span>{items.title}</span>
-            <span>{items.itemode}items</span>
+            <span>{items.title || item.title}</span>
+            <span>{items.itemode || item.itemode}items</span>
           </div>
         )}
       </CardContent>

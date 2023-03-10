@@ -1,28 +1,34 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useGetFilterQuery } from "../../redux/features/apiSlice";
-import { filterNfts, value } from "../../redux/features/filterSlice";
 
 import { NftCard } from "../UI/NftCard";
+import { SkeletonTwo } from "../UI/SkeletonTwo";
 
-const ExploreItems = ({ data, loading }) => {
+const ExploreItems = ({ data }) => {
   const cardPerRow = 8;
   const [next, setNext] = useState(cardPerRow);
   const [value, setValue] = useState("");
-
-  const filter = useSelector((state) => state?.filter?.nftFilter);
-  const dispatch = useDispatch();
-
-  const { data: filterQuery } = useGetFilterQuery(value);
+  const [loading, setLoading] = useState(false);
+  const [filterQuery, setFilterQuery] = useState([]);
 
   const loadMore = () => {
     setNext(next + cardPerRow / 2);
   };
 
-  // useEffect(() => {
-  //   dispatch(filterNfts(value));
-  // }, [value]);
+  useEffect(() => {
+    filterNft(value);
+  }, [value]);
+
+  const filterNft = async () => {
+    setLoading(true);
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${value}`
+    );
+    setFilterQuery(data);
+    setLoading(false);
+  };
 
   return (
     <>
@@ -38,8 +44,14 @@ const ExploreItems = ({ data, loading }) => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
+      {loading &&
+        new Array(8).fill(0).map((_, index) => (
+          <div className="d-flex col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <SkeletonTwo loading={loading} key={index} />
+          </div>
+        ))}
       {value
-        ? filterQuery.slice(0, next).map((index, filteredItem) => (
+        ? filterQuery?.slice(0, next).map((filteredItem, id) => (
             <div
               className="d-flex col-lg-3 col-md-6 col-sm-6 col-xs-12"
               style={{
@@ -47,10 +59,10 @@ const ExploreItems = ({ data, loading }) => {
                 backgroundSize: "cover",
               }}
             >
-              <NftCard value={value} key={index} item={filteredItem} />
+              <NftCard value={value} key={id} filteredItem={filteredItem} />
             </div>
           ))
-        : data.slice(0, next).map((item, id) => (
+        : data?.slice(0, next).map((item, id) => (
             <div
               className="d-flex col-lg-3 col-md-6 col-sm-6 col-xs-12"
               style={{
@@ -61,7 +73,6 @@ const ExploreItems = ({ data, loading }) => {
               <NftCard key={id} item={item} />
             </div>
           ))}
-
       <div className="col-md-12 text-center">
         <Link onClick={loadMore} to="" id="loadmore" className="btn-main lead">
           Load more

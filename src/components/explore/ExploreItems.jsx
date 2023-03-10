@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useGetFilterQuery } from "../../redux/features/apiSlice";
 
 import { NftCard } from "../UI/NftCard";
 import { SkeletonTwo } from "../UI/SkeletonTwo";
 
 const ExploreItems = ({ data }) => {
   const cardPerRow = 8;
+
   const [next, setNext] = useState(cardPerRow);
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
@@ -44,12 +44,6 @@ const ExploreItems = ({ data }) => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      {loading &&
-        new Array(8).fill(0).map((_, index) => (
-          <div className="d-flex col-lg-3 col-md-6 col-sm-6 col-xs-12">
-            <SkeletonTwo loading={loading} key={index} />
-          </div>
-        ))}
       {value
         ? filterQuery?.slice(0, next).map((filteredItem, id) => (
             <div
@@ -59,7 +53,11 @@ const ExploreItems = ({ data }) => {
                 backgroundSize: "cover",
               }}
             >
-              <NftCard value={value} key={id} filteredItem={filteredItem} />
+              {loading ? (
+                <SkeletonTwo loading={loading} />
+              ) : (
+                <NftCard value={value} key={id} filteredItem={filteredItem} />
+              )}
             </div>
           ))
         : data?.slice(0, next).map((item, id) => (
@@ -70,7 +68,11 @@ const ExploreItems = ({ data }) => {
                 backgroundSize: "cover",
               }}
             >
-              <NftCard key={id} item={item} />
+              {loading ? (
+                <SkeletonTwo loading={loading} />
+              ) : (
+                <NftCard key={id} item={item} />
+              )}
             </div>
           ))}
       <div className="col-md-12 text-center">

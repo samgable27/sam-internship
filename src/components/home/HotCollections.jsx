@@ -2,9 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import { Skeleton as Skelly } from "@mui/material";
-import { Box } from "@mui/system";
-import { SkeletonTwo } from "../UI/SkeletonTwo";
 import { SkeletonThree } from "../UI/SkeletonThree";
 
 const HotCollections = () => {

@@ -4,7 +4,6 @@ import { CountdownTimer } from "./CountdownTimer";
 
 export const NftCard = ({ item, filteredItem, value }) => {
   const EXPIRATION_DATE = item?.expiryDate || filteredItem?.expiryDate;
-  const NOW_IN_MS = new Date().getTime();
   const dateTimeAfterExpiry = EXPIRATION_DATE;
 
   return (

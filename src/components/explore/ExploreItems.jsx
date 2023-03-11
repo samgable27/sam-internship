@@ -10,7 +10,7 @@ const ExploreItems = ({ data }) => {
 
   const [next, setNext] = useState(cardPerRow);
   const [value, setValue] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [filterQuery, setFilterQuery] = useState([]);
 
   const loadMore = () => {

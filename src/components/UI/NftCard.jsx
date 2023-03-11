@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { CountdownTimer } from "./CountdownTimer";
 
 export const NftCard = ({ item, filteredItem, value }) => {
+  const EXPIRATION_DATE = item?.expiryDate || filteredItem?.expiryDate;
+  const NOW_IN_MS = new Date().getTime();
+  const dateTimeAfterExpiry = EXPIRATION_DATE;
+
   return (
     <div className="col-lg-12 col-md-6 col-sm-6 col-xs-12  mw-100 mh-100">
       <div className="nft__item">
@@ -20,6 +25,7 @@ export const NftCard = ({ item, filteredItem, value }) => {
             <i className="fa fa-check"></i>
           </Link>
         </div>
+        {EXPIRATION_DATE && <CountdownTimer targetDate={dateTimeAfterExpiry} />}
         <div className="nft__item_wrap">
           <div className="nft__item_extra">
             <div className="nft__item_buttons">

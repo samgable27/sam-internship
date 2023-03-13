@@ -11,14 +11,14 @@ export const NftCard = ({ item, filteredItem, value }) => {
       <div className="nft__item">
         <div className="author_list_pp">
           <Link
-            to="/author"
+            to={`/author/${item?.authorId || filteredItem?.authorId}`}
             data-bs-toggle="tooltip"
             data-bs-placement="top"
-            title={value ? filteredItem.authorId : item.authorId}
+            title={value ? filteredItem?.authorId : item?.authorId}
           >
             <img
               className="lazy object-fit-contain"
-              src={value ? filteredItem.authorImage : item.authorImage}
+              src={value ? filteredItem?.authorImage : item?.authorImage}
               alt=""
             />
             <i className="fa fa-check"></i>
@@ -45,7 +45,7 @@ export const NftCard = ({ item, filteredItem, value }) => {
           </div>
           <Link to="/item-details">
             <img
-              src={value ? filteredItem.nftImage : item.nftImage}
+              src={value ? filteredItem?.nftImage : item?.nftImage}
               className="lazy nft__item_preview"
               alt=""
             />
@@ -53,14 +53,14 @@ export const NftCard = ({ item, filteredItem, value }) => {
         </div>
         <div className="nft__item_info">
           <Link to="/item-details">
-            <h4>{value ? filteredItem.title : item.title}</h4>
+            <h4>{value ? filteredItem?.title : item?.title}</h4>
           </Link>
           <div className="nft__item_price">
-            {value ? filteredItem.price : item.price} ETH
+            {value ? filteredItem?.price : item?.price} ETH
           </div>
           <div className="nft__item_like">
             <i className="fa fa-heart"></i>
-            <span>{value ? filteredItem.likes : item.likes}</span>
+            <span>{value ? filteredItem?.likes : item?.likes}</span>
           </div>
         </div>
       </div>

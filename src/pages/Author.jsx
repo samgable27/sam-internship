@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { AuthorHeader } from "../components/UI/AuthorHeader";
 
 const Author = () => {
+  const { id } = useParams();
+  const [authorQuery, setAuthorQuery] = useState({});
+  const [authorCards, setAuthorCards] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const authorDetails = async () => {
+    setLoading(true);
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
+    );
+    setAuthorQuery(data);
+    setAuthorCards(data.nftCollection);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    authorDetails(id);
+  }, [id]);
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -22,40 +42,18 @@ const Author = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
-
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
-                          </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
-                        </h4>
-                      </div>
+                <div className="d_profile">
+                  <AuthorHeader authorQuery={authorQuery} />
+                  <div className="col-md-12">
+                    <div className="de_tab tab_simple">
+                      <AuthorItems
+                        key={authorQuery.id || authorCards.id}
+                        authorCards={authorCards}
+                        authorQuery={authorQuery}
+                        loading={loading}
+                      />
                     </div>
                   </div>
-                  <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-12">
-                <div className="de_tab tab_simple">
-                  <AuthorItems />
                 </div>
               </div>
             </div>

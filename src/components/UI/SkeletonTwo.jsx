@@ -3,7 +3,7 @@ import React from "react";
 import { Skeleton as Skelly } from "@mui/material";
 import "../../Skeleton.css";
 
-export const SkeletonTwo = ({ loading, items, item }) => {
+export const SkeletonTwo = ({ loading, items, item, authorQuery, author }) => {
   return (
     <Card>
       <CardContent>
@@ -17,12 +17,22 @@ export const SkeletonTwo = ({ loading, items, item }) => {
             />
           </div>
         ) : (
-          <img src={<img src={items.authorImage || item.authorImage} />} />
+          <img
+            src={
+              <img
+                src={
+                  items?.authorImage ||
+                  item?.authorImage ||
+                  authorQuery?.authorImage
+                }
+              />
+            }
+          />
         )}
         {loading ? (
           <Skelly variant="rounded" animation="wave" height={350} width={250} />
         ) : (
-          <img src={items.nftImage || item.nftImage} />
+          <img src={items?.nftImage || item?.nftImage || author?.nftImage} />
         )}
         {loading ? (
           <div className="flex-column align-items-center justify-content-center p-2">
@@ -31,8 +41,10 @@ export const SkeletonTwo = ({ loading, items, item }) => {
           </div>
         ) : (
           <div>
-            <span>{items.title || item.title}</span>
-            <span>{items.itemode || item.itemode}items</span>
+            <span>{items?.title || item?.title || author?.title}</span>
+            <span>
+              {items?.itemode || item?.itemode || author?.itemode}items
+            </span>
           </div>
         )}
       </CardContent>

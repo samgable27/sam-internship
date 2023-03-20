@@ -1,20 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "..//..//Skeleton.css";
 
 export const AuthorHeader = ({ authorQuery, loading }) => {
-  let followers = authorQuery.followers;
+  const [isFollowing, setIsFollowing] = useState(false);
 
-  const [follow, setFollow] = useState(followers);
-
-  const handleFollow = () => {
-    setFollow((prevState) => ({
-      ...prevState,
-      followers: prevState.followers + 1,
-    }));
-  };
+  console.log(isFollowing);
 
   return (
     <div className="d-flex align-items-center justify-content-between">
@@ -54,10 +47,29 @@ export const AuthorHeader = ({ authorQuery, loading }) => {
           <Skeleton width="200px" height={40} />
         ) : (
           <div className="de-flex-col">
-            <div className="profile_follower">{followers} followers</div>
-            <Link onClick={() => handleFollow()} to="#" className="btn-main">
-              Follow
-            </Link>
+            <div className="profile_follower">
+              {!isFollowing
+                ? authorQuery?.followers
+                : authorQuery?.followers + 1}{" "}
+              followers
+            </div>
+            {!isFollowing ? (
+              <Link
+                onClick={() => setIsFollowing(true)}
+                to="#"
+                className="btn-main"
+              >
+                Follow
+              </Link>
+            ) : (
+              <Link
+                onClick={() => setIsFollowing(false)}
+                to="#"
+                className="btn-main"
+              >
+                Unfollow
+              </Link>
+            )}
           </div>
         )}
       </div>

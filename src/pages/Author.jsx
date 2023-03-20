@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import AuthorItems from "../components/author/AuthorItems";
 import { AuthorHeader } from "../components/UI/AuthorHeader";
@@ -43,14 +43,13 @@ const Author = () => {
             <div className="row">
               <div className="col-md-12">
                 <div className="d_profile">
-                  <AuthorHeader authorQuery={authorQuery} />
+                  <AuthorHeader loading={loading} authorQuery={authorQuery} />
                   <div className="col-md-12">
                     <div className="de_tab tab_simple">
                       <AuthorItems
-                        key={authorQuery.id || authorCards.id}
                         authorCards={authorCards}
                         authorQuery={authorQuery}
-                        loading={loading}
+                        isLoading={loading}
                       />
                     </div>
                   </div>

@@ -1,27 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { AuthorCard } from "../UI/AuthorCard";
-import { SkeletonTwo } from "../UI/SkeletonTwo";
+import "..//..//Skeleton.css";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const AuthorItems = ({ authorQuery, authorCards, loading }) => {
+const AuthorItems = ({ authorQuery, authorCards, isLoading }) => {
   return (
     <div className="de_tab_content">
       <div className="tab-1">
         <div className="row">
-          {authorCards?.map((author) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-              {loading ? (
-                <SkeletonTwo
-                  loading={loading}
-                  author={author}
-                  authorQuery={authorQuery}
-                />
+          {authorCards?.map((author, idx) => (
+            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={idx}>
+              {isLoading ? (
+                <Skeleton height={441} width={306} />
               ) : (
-                <AuthorCard
-                  loading={loading}
-                  author={author}
-                  authorQuery={authorQuery}
-                />
+                <AuthorCard author={author} authorQuery={authorQuery} />
               )}
             </div>
           ))}

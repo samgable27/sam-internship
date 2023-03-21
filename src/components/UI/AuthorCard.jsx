@@ -32,7 +32,7 @@ export const AuthorCard = ({ authorQuery, author }) => {
             </div>
           </div>
         </div>
-        <Link to="/item-details">
+        <Link to={`/item-details/${author?.nftId}`}>
           <img
             src={author?.nftImage}
             className="lazy nft__item_preview"

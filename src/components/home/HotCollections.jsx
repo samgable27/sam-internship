@@ -3,8 +3,15 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { SkeletonThree } from "../UI/SkeletonThree";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HotCollections = () => {
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -35,7 +42,12 @@ const HotCollections = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div
+              className="text-center"
+              data-aos="slide-left"
+              data-aos-easing="ease-in-out"
+              data-aos-duration="1800"
+            >
               <h2>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
@@ -54,6 +66,9 @@ const HotCollections = () => {
               : cards.map((card, id) => (
                   <div
                     className="col-lg-12 col-md-6 col-sm-6 col-xs-12 mw-100"
+                    data-aos="flip-down"
+                    data-aos-easing="ease-in-out"
+                    data-aos-duration="1400"
                     key={id}
                   >
                     <div className="nft_coll">

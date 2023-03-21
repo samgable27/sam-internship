@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "../../Slider.css";
 import { SkeletonTwo } from "../UI/SkeletonTwo";
 import { NftCard } from "../UI/NftCard";
 import { useGetNewItemsQuery } from "../../redux/features/apiSlice";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const NewItems = () => {
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
+
   const { data, isLoading } = useGetNewItemsQuery();
 
   const settings = {
@@ -47,21 +54,35 @@ const NewItems = () => {
     <section id="section-items" className="no-bottom">
       <div className="container">
         <div className="row">
-          <div className="col-lg-12">
+          <div
+            data-aos="fade-down"
+            data-aos-easing="ease-in-out"
+            data-aos-duration="1600"
+          >
             <div className="text-center">
               <h2>New Items</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <Slider {...settings}>
-            {isLoading
-              ? new Array(7)
-                  .fill(0)
-                  .map((_, index) => (
-                    <SkeletonTwo key={index} loading={isLoading} />
-                  ))
-              : data.map((item, id) => <NftCard key={id} item={item} />)}
-          </Slider>
+          <div>
+            <Slider {...settings}>
+              {isLoading
+                ? new Array(7)
+                    .fill(0)
+                    .map((_, index) => (
+                      <SkeletonTwo key={index} loading={isLoading} />
+                    ))
+                : data.map((item, id) => (
+                    <div
+                      data-aos="slide-up"
+                      data-aos-easing="ease-in-out"
+                      data-aos-duration="1400"
+                    >
+                      <NftCard key={id} item={item} />
+                    </div>
+                  ))}
+            </Slider>
+          </div>
         </div>
       </div>
     </section>

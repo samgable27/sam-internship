@@ -43,7 +43,7 @@ export const NftCard = ({ item, filteredItem, value }) => {
               </div>
             </div>
           </div>
-          <Link to="/item-details">
+          <Link to={`/item-details/${item?.nftId || filteredItem?.nftId}`}>
             <img
               src={value ? filteredItem?.nftImage : item?.nftImage}
               className="lazy nft__item_preview"

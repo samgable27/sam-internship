@@ -80,7 +80,7 @@ const ItemDetails = () => {
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${itemDetailQuery?.ownerId}`}>
                             {loading ? (
                               <Skeleton circle width={50} height={50} />
                             ) : (
@@ -111,7 +111,7 @@ const ItemDetails = () => {
                       <h6>Creator</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${itemDetailQuery?.creatorId}`}>
                             {loading ? (
                               <Skeleton circle height={50} width={50} />
                             ) : (

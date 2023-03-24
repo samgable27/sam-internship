@@ -9,13 +9,11 @@ import { ApiProvider } from "@reduxjs/toolkit/query/react";
 import { nftApi } from "./redux/features/apiSlice";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ApiProvider api={nftApi}>
-        <App />
-      </ApiProvider>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <ApiProvider api={nftApi}>
+      <App />
+    </ApiProvider>
+  </Provider>,
   document.getElementById("root")
 );
 

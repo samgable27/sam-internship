@@ -7,8 +7,6 @@ import "..//..//Skeleton.css";
 export const AuthorHeader = ({ authorQuery, loading }) => {
   const [isFollowing, setIsFollowing] = useState(false);
 
-  console.log(isFollowing);
-
   return (
     <div className="d-flex align-items-center justify-content-between">
       <div className="de-flex-col">

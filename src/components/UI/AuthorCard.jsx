@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-export const AuthorCard = ({ authorQuery, author }) => {
+export const AuthorCard = ({ authorQuery, author, loading }) => {
   return (
     <div className="nft__item">
       {authorQuery && (
@@ -33,11 +33,15 @@ export const AuthorCard = ({ authorQuery, author }) => {
           </div>
         </div>
         <Link to={`/item-details/${author?.nftId}`}>
-          <img
-            src={author?.nftImage}
-            className="lazy nft__item_preview"
-            alt=""
-          />
+          {loading ? (
+            <Skeleton width={260} height={250} />
+          ) : (
+            <img
+              src={author?.nftImage}
+              className="lazy nft__item_preview"
+              alt=""
+            />
+          )}
         </Link>
       </div>
       <div className="nft__item_info">

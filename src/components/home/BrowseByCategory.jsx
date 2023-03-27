@@ -25,7 +25,7 @@ const BrowseByCategory = () => {
             </div>
           </div>
           <div
-            className="d-flex"
+            className="d-flex flex-wrap"
             data-aos="slide-right"
             data-aos-easing="ease-in-out"
             data-aos-duration="2000"

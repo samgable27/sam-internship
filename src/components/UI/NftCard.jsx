@@ -7,7 +7,7 @@ export const NftCard = ({ item, filteredItem, value }) => {
   const dateTimeAfterExpiry = EXPIRATION_DATE;
 
   return (
-    <div className="col-lg-12 col-md-6 col-sm-6 col-xs-12  mw-100 mh-100">
+    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
       <div className="nft__item">
         <div className="author_list_pp">
           <Link
@@ -17,7 +17,7 @@ export const NftCard = ({ item, filteredItem, value }) => {
             title={value ? filteredItem?.authorId : item?.authorId}
           >
             <img
-              className="lazy object-fit-contain"
+              className="lazy object-fit-contain img-responsive"
               src={value ? filteredItem?.authorImage : item?.authorImage}
               alt=""
             />
@@ -46,7 +46,7 @@ export const NftCard = ({ item, filteredItem, value }) => {
           <Link to={`/item-details/${item?.nftId || filteredItem?.nftId}`}>
             <img
               src={value ? filteredItem?.nftImage : item?.nftImage}
-              className="lazy nft__item_preview"
+              className="lazy nft__item_preview img-fluid"
               alt=""
             />
           </Link>

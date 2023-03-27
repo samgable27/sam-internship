@@ -6,7 +6,7 @@ export const CountdownTimer = ({ targetDate }) => {
   const [hours, minutes, seconds] = useCountdown(targetDate);
 
   return (
-    <div className="d-flex justify-content-end">
+    <div className="d-flex justify-content-end position-sticky">
       <ShowCounter hours={hours} minutes={minutes} seconds={seconds} />
     </div>
   );

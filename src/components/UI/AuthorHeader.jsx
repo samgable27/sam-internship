@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import "..//..//Skeleton.css";
 
 export const AuthorHeader = ({ authorQuery, loading }) => {
   const [isFollowing, setIsFollowing] = useState(false);
@@ -21,7 +20,7 @@ export const AuthorHeader = ({ authorQuery, loading }) => {
             <h4>
               {loading ? <Skeleton width="200px" /> : authorQuery?.authorName}
               <span className="profile_username">
-                {loading ? <Skeleton width="50%" /> : authorQuery?.tag}
+                {loading ? <Skeleton width="50%" /> : "@" + authorQuery?.tag}
               </span>
               {loading ? (
                 <Skeleton width="200px" height={15} />

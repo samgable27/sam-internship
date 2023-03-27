@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import { SkeletonThree } from "../UI/SkeletonThree";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const HotCollections = () => {
   useEffect(() => {
@@ -14,12 +16,38 @@ const HotCollections = () => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
-
   const [loading, setLoading] = useState(true);
 
   const [cards, setCards] = useState([]);
@@ -65,7 +93,7 @@ const HotCollections = () => {
                   ))
               : cards.map((card, id) => (
                   <div
-                    className="col-lg-12 col-md-6 col-sm-6 col-xs-12 mw-100"
+                    className="col-lg-12 col-md-8 col-sm-6 col-xs-12 mw-100 mh-100 "
                     data-aos="flip-down"
                     data-aos-easing="ease-in-out"
                     data-aos-duration="1400"
@@ -76,7 +104,7 @@ const HotCollections = () => {
                         <Link to={`/item-details/${card.nftId}`}>
                           <img
                             src={card.nftImage}
-                            className="lazy img-fluid"
+                            className="lazy mw-100 mh-100 img-fluid"
                             alt=""
                           />
                         </Link>

@@ -77,6 +77,7 @@ const NewItems = () => {
                       data-aos="slide-up"
                       data-aos-easing="ease-in-out"
                       data-aos-duration="1400"
+                      className=""
                     >
                       <NftCard key={id} item={item} />
                     </div>

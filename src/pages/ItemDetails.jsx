@@ -58,11 +58,11 @@ const ItemDetails = () => {
                     <div className="item_info_counts">
                       <div className="item_info_views">
                         <i className="fa fa-eye"></i>
-                        100
+                        {itemDetailQuery?.views}
                       </div>
                       <div className="item_info_like">
                         <i className="fa fa-heart"></i>
-                        74
+                        {itemDetailQuery?.likes}
                       </div>
                     </div>
                   )}

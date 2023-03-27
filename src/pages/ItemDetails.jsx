@@ -94,7 +94,7 @@ const ItemDetails = () => {
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">
+                          <Link to={`/author/${itemDetailQuery?.ownerId}`}>
                             {loading ? (
                               <Skeleton width={120} />
                             ) : (
@@ -125,7 +125,7 @@ const ItemDetails = () => {
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">
+                          <Link to={`/author/${itemDetailQuery?.creatorId}`}>
                             {itemDetailQuery?.creatorName}
                           </Link>
                         </div>
